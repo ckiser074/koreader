@@ -135,26 +135,11 @@ TARGET:
     android-arm64
     android-x86
     android-x86_64
-    bookeen
-    cervantes
     emulator                  Default if no TARGET is given
-    kindle                    Compatible with all Kindle models >= Kindle4
-    kindlehf                  Compatible with all Kindles with FW >= 5.16.3
-    kindlepw2                 With compiler optimizations for Kindle models >= Paperwhite 2
-    kindle-legacy             Needed only for Kindle2/3/DXG
-    kobo
-    kobov4                    Compatible with Mk.7+ Kobo devices on FW 4.x
-    kobov5                    Compatible with all Kobo & Tolino devices on FW 5.x
     linux
-    macos                     MacOS app bundle
-    pocketbook
-    pocketbookhf
-    remarkable
-    remarkable-aarch64
-    win32
 "
 # shellcheck disable=2155
-declare -r RELEASE_TARGETS_HELP_MSG="$(sed -e '/^    \(emulator\|win32\)/d' <<<"${TARGETS_HELP_MSG}")"
+declare -r RELEASE_TARGETS_HELP_MSG="$(sed -e '/^    \(emulator\)/d' <<<"${TARGETS_HELP_MSG}")"
 
 function setup_target() {
     TARGET="$1"
@@ -169,17 +154,8 @@ function setup_target() {
             TARGET=''
             ;;
         linux) is_system Linux ;;
-        macos) is_system macOS ;;
-        win32) is_system Windows ;;
         # Devices.
         android-arm | android-arm64 | android-x86 | android-x86_64) ;;
-        bookeen) ;;
-        cervantes) ;;
-        kindle | kindlehf | kindlepw2 | kindle-legacy) ;;
-        kobo | kobov4 | kobov5) ;;
-        pocketbook | pocketbookhf) ;;
-        remarkable) ;;
-        remarkable-aarch64) ;;
         # Invalid.
         *)
             valid=0
@@ -720,12 +696,7 @@ function docker_create() {
     shift
     case "${image}" in
         android-arm | android-arm64 | android-x86 | android-x86_64) image=koreader/koandroid ;;
-        cervantes) image=koreader/kocervantes ;;
-        kindle | kindlehf | kindlepw2 | kindle-legacy) image=koreader/kokindle ;;
-        kobo | kobov4 | kobov5) image=koreader/kokobo ;;
         linux) image=koreader/koappimage ;;
-        pocketbook | pocketbookhf) image=koreader/kopb ;;
-        remarkable | remarkable-aarch64) image=koreader/koremarkable ;;
     esac
     local user uid gid
     if docker_is_rootless; then
