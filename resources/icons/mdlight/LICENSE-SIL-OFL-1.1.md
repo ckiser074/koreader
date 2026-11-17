@@ -1,5 +1,5 @@
 # SIL OPEN FONT LICENSE (OFL-1.1)
-View Summary of SIL Open Font License v1.1 (OFL-1.1) on TLDRLegal » (Disclaimer)
+View Summary of SIL Open Font License v1.1 (OFL-1.1) on TLDRLegal ï¿½ (Disclaimer)
 
 Copyright (c) 2015-2017, Austin Andrews (https://materialdesignicons.com),
 with Reserved Font Name MaterialDesignIconsLight.
